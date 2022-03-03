@@ -1,11 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Recipe } from './recipes.model';
 
 @Injectable()
 export class RecipesService {
-    recipeSelected = new EventEmitter<Recipe>();
+    //recipeSelected = new Subject<Recipe>();
+    
     private recipes: Recipe[] = [
         new Recipe('Masala Dosa', 
           'South Indian breakfast dish', 
@@ -31,6 +33,10 @@ export class RecipesService {
 
     public getRecipes() {
         return this.recipes.slice();
+    }
+
+    public getRecipe(index: number) {
+      return this.recipes[index];
     }
 
     public addIngredientsToShoppingList(ingredients: Ingredient[]) {
