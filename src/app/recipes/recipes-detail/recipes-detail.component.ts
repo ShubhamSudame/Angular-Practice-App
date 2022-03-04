@@ -12,7 +12,11 @@ export class RecipesDetailComponent implements OnInit {
   recipe: Recipe;
   id: number;
 
-  constructor(private recipeService: RecipesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private recipeService: RecipesService,
+              private route: ActivatedRoute, 
+              private router: Router) {
+              
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -32,6 +36,7 @@ export class RecipesDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes']);
   }
 }
