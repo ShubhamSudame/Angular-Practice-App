@@ -11,7 +11,7 @@ import { RecipesService } from '../recipes.service';
 })
 export class RecipesListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
-  subscription = new Subscription;
+  subscription: Subscription;
 
   constructor(private recipeService: RecipesService,
               private router: Router,
