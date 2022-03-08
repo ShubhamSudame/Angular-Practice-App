@@ -41,6 +41,12 @@ testem.log
 .DS_Store
 Thumbs.db
 git.personalized_token.txt
+.github
 
 #Environment
 /src/environments/
+
+#Firebase
+.firebase
+.firebaserc
+firebase.json
