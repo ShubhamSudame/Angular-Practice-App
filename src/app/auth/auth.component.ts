@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit {
     if(!form.valid) {
       return;
     }
-    
+    let route: string;
     const email = form.value.email;
     const password = form.value.password;
     this.isLoading = true;
@@ -35,17 +35,19 @@ export class AuthComponent implements OnInit {
     let authObs: Observable<AuthResponseData>; 
 
     if (this.isLoginMode) {
-      authObs = this.authService.login(email, password)
+      authObs = this.authService.login(email, password);
+      route = '/recipes';
     }
     else {
       authObs = this.authService.signUp(email, password);
+      route = '/profile';
     }
 
     authObs.subscribe({
       next: resData => {
         console.log(resData);
         this.isLoading = false;
-        this.router.navigate(['/recipes'])
+        this.router.navigate([route]);
       },
       error: error => {
         console.log(error);

@@ -8,7 +8,7 @@ import { LoadingSpinnerComponent } from "./loading-spinner/loading-spinner.compo
     declarations: [
         AlertComponent,
         LoadingSpinnerComponent,
-        DropdownDirective
+        DropdownDirective,
     ],
     imports: [
         CommonModule
