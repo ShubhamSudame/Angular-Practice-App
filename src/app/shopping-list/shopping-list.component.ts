@@ -11,6 +11,7 @@ import { ShoppingListService } from './shopping-list.service';
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private igChangedSub: Subscription;
+  checkoutMode = false;
   constructor(private slService: ShoppingListService) { }
 
   ngOnInit(): void {
@@ -28,5 +29,11 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.igChangedSub.unsubscribe();
+  }
+  onCheckout() {
+    this.checkoutMode = true;
+  }
+  onClose() {
+    this.checkoutMode = false;
   }
 }
