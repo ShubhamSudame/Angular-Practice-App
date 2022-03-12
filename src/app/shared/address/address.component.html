@@ -1,17 +1,17 @@
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Shipping Information</mat-card-title>
+      <mat-card-title>Billing Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Company" formControlName="company">
+            <input matInput placeholder="Address Type" formControlName="type">
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="First name" formControlName="firstName">
@@ -28,7 +28,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
@@ -64,13 +64,13 @@
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select placeholder="State" formControlName="state">
+            <mat-select placeholder="State/Union Territory" formControlName="state">
               <mat-option *ngFor="let state of states" [value]="state.abbreviation">
                 {{ state.name }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
-              State is <strong>required</strong>
+              State/Union Territory is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
@@ -78,8 +78,8 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
-            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+            <input matInput #postalCode maxlength="6" placeholder="Postal Code" type="number" formControlName="postalCode">
+            <mat-hint>{{postalCode.value.length}} / 6</mat-hint>
           </mat-form-field>
         </div>
       </div>

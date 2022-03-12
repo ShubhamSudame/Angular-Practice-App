@@ -5,10 +5,13 @@ import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { ProfileComponent } from "./profile.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxCollapseModule } from 'ngx-collapse';
+import { CollapseComponent } from "./collapse/collapse.component";
 
 @NgModule({
     declarations: [
-        ProfileComponent
+        ProfileComponent,
+        CollapseComponent
     ],
     imports: [
         CommonModule, 
@@ -18,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BrowserAnimationsModule,
         RouterModule.forChild([
             { path: '', component: ProfileComponent }
-        ])
+        ]),
+        NgxCollapseModule
     ],
     exports: [
         ProfileComponent
