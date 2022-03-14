@@ -1,0 +1,20 @@
+<div id="net-banking" class="tab-pane fade show active pt-3">
+    <label for="Select Your Bank">
+        <h6>Select your Bank</h6>
+    </label>
+    <form [formGroup]="netbankingForm" (ngSubmit)="onSubmit()">
+    <select class="form-control" id="ccmonth" formControlName="bankName">
+        <option value="" selected disabled>--Please select your Bank--</option>
+        <option value="icici">ICICI Bank</option>
+        <option value="hdfc">HDFC Bank</option>
+        <option value="indusind">IndusInd Bank</option>
+        <option value="sbi">SBI</option>
+        <option value="idbi">IDBI Bank</option>
+    </select>
+    </form>
+    <p> <button type="submit" class="btn btn-primary" [disabled]="!netbankingForm.valid"><i class="fas fa-mobile-alt mr-2"></i>
+            Save Payment Preference</button> </p>
+    <p class="text-muted">Note: After clicking on the button, you will be directed to a secure
+        gateway for payment. After completing the payment process, you will be redirected back to
+        the website to view details of your order. </p>
+</div>

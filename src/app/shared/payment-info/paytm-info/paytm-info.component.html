@@ -1,0 +1,21 @@
+<div id="paytm" class="tab-pane fade show active pt-3">
+    <form [formGroup]="paytmForm" (ngSubmit)="onSubmit()">
+        <h6 class="pb-2">Select your PayTM account type</h6>
+        <div class="form-group ">
+            <label class="radio-inline">
+                <input type="radio" name="optradio" class="ml-5" value="domestic" formControlName="accountType"> Domestic
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="optradio" class="ml-5" value="international" formControlName="accountType">International
+            </label>
+        </div>
+        <label>UPI Address</label>
+        <input type="text" class="form-control" placeholder="eg: abcde@okhdfcbank" required formControlName="upiAddress"> 
+    </form>
+    <br>
+    <p> <button type="submit" class="btn btn-primary" [disabled]="!paytmForm.valid"><i class="fab fa-paypal mr-2"></i> Log into
+            my PayTM</button> </p>
+    <p class="text-muted"> Note: After clicking on the button, you will be directed to a secure
+        gateway for payment. After completing the payment process, you will be redirected back to
+        the website to view details of your order. </p>
+</div>

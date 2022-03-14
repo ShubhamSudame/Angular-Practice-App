@@ -28,7 +28,14 @@ export class ProfileComponent implements OnInit {
     const user = this.authService.user.value;
     const profile = this.profileService.userDetail;
     this.profileService.getUser(user.id).subscribe(user => {
-      const new_user = console.log(user);
+      console.log(user);
+      this.profileForm = new FormGroup({
+        first_name: new FormControl(user.first_name, Validators.required),
+        last_name: new FormControl(user.last_name, Validators.required),
+        //email: new FormControl({value: this.email, disabled: true}, Validators.email),
+        phone_number: new FormControl(user.phone_number, [Validators.maxLength(10), Validators.minLength(10), Validators.required]),
+        display_picture: new FormControl(profile.display_picture ? profile.display_picture: null)
+      });
     });
     if (profile.display_picture) {
       this.imageExists = true;
@@ -47,7 +54,6 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (!this.profileService.init) {
-      //this.profileService.setProfile(this.profileForm.value);
       this.profileService.setUserProfile(this.userid, 
         this.profileForm.value.first_name,
         this.profileForm.value.last_name, 

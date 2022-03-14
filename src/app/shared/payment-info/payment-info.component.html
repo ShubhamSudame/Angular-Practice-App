@@ -1,0 +1,39 @@
+<div class="card ">
+    <div class="card-header">
+        <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" class="nav-link active " (click)="paymentMode = 'credit-card'">
+                        <i class="fas fa-credit-card mr-2"></i> Credit Card
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="pill" class="nav-link " (click)="paymentMode='paytm'">
+                        <i class="fab fa-paypal mr-2"></i> PayTM
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="pill" class="nav-link " (click)="paymentMode='netbanking'">
+                        <i class="fas fa-mobile-alt mr-2"></i> Net Banking
+                    </a>
+                </li>
+            </ul>
+        </div> <!-- End -->
+        <!-- Credit card form content -->
+        <div class="tab-content">
+            <!-- credit card info-->
+            <app-credit-card-info *ngIf="paymentMode === 'credit-card'"></app-credit-card-info>
+            <app-paytm-info *ngIf="paymentMode === 'paytm'"></app-paytm-info>
+            <app-netbanking-info *ngIf="paymentMode === 'netbanking'"></app-netbanking-info>
+        </div> <!-- End -->
+        <!-- Paypal info -->
+        
+        <!-- bank transfer info -->
+        
+           
+                <!--  -->
+        <!-- End -->
+        <!-- End -->
+    </div>
+</div>

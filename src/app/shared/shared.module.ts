@@ -10,6 +10,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaymentInfoComponent } from "./payment-info/payment-info.component";
+import { PaymentInfoModule } from "./payment-info/payment-info.module";
 
 @NgModule({
     declarations: [
@@ -17,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         LoadingSpinnerComponent,
         DropdownDirective,
         AddressComponent,
+        PaymentInfoComponent
     ],
     imports: [
         CommonModule,
@@ -25,13 +28,15 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatSelectModule,
         MatRadioModule,
         MatCardModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        PaymentInfoModule
     ],
     exports: [
         AlertComponent,
         LoadingSpinnerComponent,
         DropdownDirective,
-        AddressComponent
+        AddressComponent,
+        PaymentInfoComponent
     ]
 })
 export class SharedModule {
