@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { of } from 'rxjs';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-wizard',
@@ -8,7 +9,9 @@ import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, S
   styleUrls: ['./wizard.component.css']
 })
 export class WizardComponent implements OnInit {
-  @Output() exit = new EventEmitter<void>()
+  @Output() exit = new EventEmitter<void>();
+  newComponent: boolean = false;
+
   constructor(private ngWizardService: NgWizardService) { }
   
   ngOnInit(): void {
@@ -52,5 +55,9 @@ export class WizardComponent implements OnInit {
   }
   onClose() {
     this.exit.emit();
+  }
+
+  onChecked(data: MatCheckboxChange) {
+      this.newComponent = data.checked;
   }
 }

@@ -47,7 +47,7 @@ export class DataStorageService {
     public storeUser(user: { id: string, first_name: string, last_name: string, email: string, phone_number: number, display_picture?: string }) {
         return this.http
             .put(
-                environment.firebaseConfig.databaseURL + '/users.json',
+                environment.firebaseConfig.databaseURL + '/users.json/' + user.id,
                 user
             ).subscribe(
                 response => {
@@ -61,8 +61,59 @@ export class DataStorageService {
             .get<User>(
                 environment.firebaseConfig.databaseURL + '/users.json',
                 {
-                    params: new HttpParams().set('id', userid)
+                    params: new HttpParams().set('userid', userid)
                 }
             );
     }
+
+    public storeAddress(userid: string, data: object) {
+        return this.http.put(
+                environment.firebaseConfig.databaseURL + '/address.json',
+                {
+                    userid: userid,
+                    data: data
+                }
+            ).subscribe(
+                address => {
+                    console.log(address);
+                }
+            );
+    }
+
+    public getAddress() {
+        return this.http
+            .get<{data: any, userid: string}>(
+                environment.firebaseConfig.databaseURL + '/address.json',
+            );
+    }
+
+    public storeCreditCardInfo(userid: string, data: any) {
+        return this.http.put(
+            environment.firebaseConfig.databaseURL + '/credit-card.json',
+            {
+                userid: userid,
+                data: data
+            }
+        ).subscribe(
+            cc => {
+                console.log(cc);
+            }
+        );
+    }
+
+    public getCreditCardInfo() {
+        return this.http
+            .get<{data: any, userid: string}>(
+                environment.firebaseConfig.databaseURL + '/credit-card.json',
+            );
+    }
+
+    public storePayTMUPI() {
+
+    }
+    
+    public getPayTMUPI() {
+
+    }
+
 }

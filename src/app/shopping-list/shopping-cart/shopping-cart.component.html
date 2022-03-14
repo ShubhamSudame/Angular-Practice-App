@@ -1,0 +1,8 @@
+<h4>{{heading}}</h4>
+<hr>
+<ul class="list-group">
+    <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of ingredients; let i = index"
+        (click)="onEditItem(i)">
+        {{ ingredient.name }} {{ ingredient.quantity }} {{ ingredient.unit }}
+    </a>
+</ul>

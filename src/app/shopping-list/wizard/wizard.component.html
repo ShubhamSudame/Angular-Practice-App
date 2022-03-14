@@ -3,18 +3,22 @@
       <div class="container py-5">
         <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
   
-          <ng-wizard-step [title]="'Step 1'" [description]="'Confirm Billing Address'" [canEnter]="isValidTypeBoolean"
+          <ng-wizard-step [title]="'Step 1'" [description]="'Review Cart'" [canEnter]="isValidTypeBoolean"
             [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-            <span>Step 1 content</span>
+            <app-shopping-cart heading="Review Cart Items"></app-shopping-cart>
+            <app-shopping-edit></app-shopping-edit>
           </ng-wizard-step>
   
           <ng-wizard-step [title]="'Step 2'" [description]="'Choose Payment Method'">
-            <span>Step 2 content</span>
+            <app-credit-card-info></app-credit-card-info>
           </ng-wizard-step>
   
-          <ng-wizard-step [title]="'Step 3'" [description]="'Review Cart'"
+          <ng-wizard-step [title]="'Step 3'" [description]="'Confirm Billing Address'"
             [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-            <span>Step 3 content</span>
+            <app-address title="Billing Address"></app-address>
+            <mat-checkbox (change)="onChecked($event)">Shipping Address same as Billing Address</mat-checkbox>
+            <app-address title="Shipping Address" *ngIf="!newComponent"></app-address>
+            <button type="submit" class="btn btn-info" (click)="onClose()">Submit</button>
           </ng-wizard-step>
   
           <!-- <ng-wizard-step [title]="'Step 4'" [description]="'Step 4 description'">
@@ -31,7 +35,7 @@
   
           <ng-wizard-step [title]="'Step 7'" [description]="'Step 7 description'">
             <span>Step 7 content</span>
-            <button type="submit" class="btn btn-info" (click)="onClose()">Submit</button>
+            
           </ng-wizard-step>-->
         </ng-wizard>
         <button type="submit" class="btn btn-danger" (click)="onClose()">Cancel</button>

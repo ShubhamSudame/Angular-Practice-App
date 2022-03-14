@@ -7,6 +7,8 @@ import { ProfileComponent } from "./profile.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxCollapseModule } from 'ngx-collapse';
 import { CollapseComponent } from "./collapse/collapse.component";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AddressModule } from "../shared/address/address.module";
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import { CollapseComponent } from "./collapse/collapse.component";
         RouterModule.forChild([
             { path: '', component: ProfileComponent }
         ]),
-        NgxCollapseModule
+        NgxCollapseModule,
+        MatCheckboxModule,
+        AddressModule
     ],
     exports: [
         ProfileComponent

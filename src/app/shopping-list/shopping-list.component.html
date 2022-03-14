@@ -5,18 +5,7 @@
     <app-wizard *ngIf="checkoutMode" (exit)="onClose()"></app-wizard>
     <div class="col-xs-10">
         <app-shopping-edit></app-shopping-edit>
-        <h4>Add items to the Shopping List</h4>
-        <hr>
-        <ul class="list-group">
-            <a 
-            class="list-group-item" 
-            style="cursor: pointer"
-            *ngFor="let ingredient of ingredients; let i = index"
-            (click)="onEditItem(i)"
-            >
-            {{ ingredient.name }} {{ ingredient.quantity }} {{ ingredient.unit }}
-            </a>
-        </ul>
+        <app-shopping-cart heading="Add Items to the Shopping List"></app-shopping-cart>
     </div>
 </div>
 

@@ -26,22 +26,24 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.authService.user.value;
+    this.userid = user.id;
+    this.email = user.email;
     const profile = this.profileService.userDetail;
     this.profileService.getUser(user.id).subscribe(user => {
-      console.log(user);
+      console.log(user[this.userid]);
       this.profileForm = new FormGroup({
-        first_name: new FormControl(user.first_name, Validators.required),
-        last_name: new FormControl(user.last_name, Validators.required),
+        first_name: new FormControl(user[this.userid].first_name, Validators.required),
+        last_name: new FormControl(user[this.userid].last_name, Validators.required),
         //email: new FormControl({value: this.email, disabled: true}, Validators.email),
-        phone_number: new FormControl(user.phone_number, [Validators.maxLength(10), Validators.minLength(10), Validators.required]),
+        phone_number: new FormControl(user[this.userid].phone_number, [Validators.maxLength(10), Validators.minLength(10), Validators.required]),
         display_picture: new FormControl(profile.display_picture ? profile.display_picture: null)
       });
     });
     if (profile.display_picture) {
       this.imageExists = true;
     }
-    this.userid = user.id;
-    this.email = user.email;
+    
+    
     this.profileForm = new FormGroup({
       first_name: new FormControl(profile.first_name, Validators.required),
       last_name: new FormControl(profile.last_name, Validators.required),
