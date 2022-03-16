@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy, EventEmitter, Output } from "@angular/core";
 import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { Subscription } from 'rxjs';
@@ -11,6 +11,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
     ingredients: Ingredient[];
     private igChangedSub: Subscription;
     @Input() heading: string;
+    @Output() cartItems = new EventEmitter<number>();
 
     constructor(private slService: ShoppingListService) { }
 
@@ -21,10 +22,12 @@ export class ShoppingCartComponent implements OnInit, OnDestroy{
                 this.ingredients = ingredients;
             }
         );
+        this.cartItems.emit(this.ingredients.length);
     }
 
     onEditItem(index: number) {
         this.slService.startedEditing.next(index);
+        //
     }
 
     ngOnDestroy(): void {

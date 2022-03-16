@@ -12,6 +12,8 @@ import { AddressModule } from "../shared/address/address.module";
 import { PaymentInfoModule } from "../shared/payment-info/payment-info.module";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
+import { CreditCardInfoModule } from "../shared/payment-info/credit-card-info/credit-card-info.module";
+
 
 const ngWizardConfig: NgWizardConfig = {
     theme: THEME.default
@@ -33,7 +35,10 @@ const ngWizardConfig: NgWizardConfig = {
         NgWizardModule.forRoot(ngWizardConfig),
         AddressModule,
         PaymentInfoModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        CreditCardInfoModule
+    ],
+    providers: [
     ]
 })
 export class ShoppingListModule {

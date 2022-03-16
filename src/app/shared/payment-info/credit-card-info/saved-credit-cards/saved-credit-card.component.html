@@ -1,0 +1,14 @@
+<!-- <ul class="list-group">
+    <a style="cursor: pointer" class="list-group-item" *ngFor="let creditCard of creditCards; let i = index" (click)="onSelectCreditCard(i)">
+        XXXX-XXXX-XXXX-{{ creditCard.cardNumber | slicer:-4 }} {{ creditCard.expiryMM }}/{{ creditCard.expiryYY }}
+    </a>
+</ul> -->
+<select #item class="form-select" aria-label="Default select example" (change)="onSelectCreditCard(item.value)">
+    <option selected>Select Credit Card</option>
+    <option 
+        class="option"
+        *ngFor="let creditCard of creditCards; let i = index" 
+        [value]="i">
+        XXXX-XXXX-XXXX-{{ creditCard.cardNumber | slicer:-4 }} {{ creditCard.expiryMM }}/{{ creditCard.expiryYY }}
+    </option>
+</select>

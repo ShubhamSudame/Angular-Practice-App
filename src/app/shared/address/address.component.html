@@ -82,6 +82,9 @@
             <mat-hint>{{postalCode.value.length}} / 6</mat-hint>
           </mat-form-field>
         </div>
+        <div *ngIf="addressForm.controls['postalCode'].touched && !addressForm.controls['postalCode'].valid">
+          <strong *ngIf="addressForm.controls['postalCode'].errors.minLength && addressForm.get('postalCode').errors.maxLength">Please Enter Valid Postal Code!</strong>
+        </div>
       </div>
       <!-- <div class="row">
         <div class="col">
@@ -93,9 +96,9 @@
         </div>
       </div> -->
     </mat-card-content>
-    <!-- <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
-    </mat-card-actions> -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Save Address</button>
+    </mat-card-actions>
     
   </mat-card>
 </form>

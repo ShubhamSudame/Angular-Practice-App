@@ -42,6 +42,11 @@
                             <strong *ngIf="creditcardForm.get('expiryMM').errors['invalidMonth']">Please
                                 Enter valid month!</strong>
                         </div>
+                        <div
+                            *ngIf="creditcardForm.controls['expiryYY'].touched && !creditcardForm.get('expiryYY').valid">
+                            <strong *ngIf="creditcardForm.get('expiryYY').errors['invalidYear']">Please
+                                Enter Expiry Year within 2022 and 2032 !</strong>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -49,7 +54,7 @@
                         <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
                             <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
                         </label>
-                        <input type="password" required class="form-control" formControlName="cvv">
+                        <input type="password" required class="form-control" formControlName="cvv" matTooltip="'CVV is the last 3  digits at the back of the card'" matTooltipPosition="right">
                     </div>
                 </div>
             </div>

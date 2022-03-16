@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { of } from 'rxjs';
 import { NgWizardConfig, NgWizardService, StepChangedArgs, StepValidationArgs, STEP_STATE, THEME } from 'ng-wizard';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { CreditCardInfoComponent } from 'src/app/shared/payment-info/credit-card-info/credit-card-info.component';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-wizard',
@@ -11,10 +13,14 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class WizardComponent implements OnInit {
   @Output() exit = new EventEmitter<void>();
   newComponent: boolean = false;
+  items: number;
+  //@ViewChild('creditCardComponent', {static: false}) creditCardComponent: CreditCardInfoComponent;
+  //@ViewChild('shoppingCart', {static: false}) shoppingCartComponent: ShoppingCartComponent;
 
   constructor(private ngWizardService: NgWizardService) { }
   
   ngOnInit(): void {
+    
   }
   stepStates = {
     normal: STEP_STATE.normal,
@@ -48,7 +54,7 @@ export class WizardComponent implements OnInit {
   }
   isValidTypeBoolean: boolean = true;
   isValidFunctionReturnsBoolean(args: StepValidationArgs) {
-    return true;
+    return this.items > 0;
   }
   isValidFunctionReturnsObservable(args: StepValidationArgs) {
     return of(true);
@@ -59,5 +65,19 @@ export class WizardComponent implements OnInit {
 
   onChecked(data: MatCheckboxChange) {
       this.newComponent = data.checked;
+  }
+
+  updateCart(count: number) {
+    this.items += count;
+    console.log(this.items);
+  }
+
+  getCartItems(count: number) {
+    this.items = count;
+    console.log(this.items);
+  }
+
+  onSubmit() {
+
   }
 }

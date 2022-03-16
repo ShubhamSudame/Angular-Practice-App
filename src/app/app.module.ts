@@ -14,7 +14,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { ProfileModule } from './profile/profile.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +29,15 @@ import { ProfileModule } from './profile/profile.module';
     AngularFireAuthModule,
     ProfileModule,
   ],
-  providers: [ShoppingListService, RecipesService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [
+    ShoppingListService, 
+    RecipesService,
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthInterceptorService, 
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

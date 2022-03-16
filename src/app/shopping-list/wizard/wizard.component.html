@@ -1,44 +1,48 @@
 <div class="backdrop">
-    <div class="alert-box">
-      <div class="container py-5">
-        <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
-  
-          <ng-wizard-step [title]="'Step 1'" [description]="'Review Cart'" [canEnter]="isValidTypeBoolean"
-            [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-            <app-shopping-cart heading="Review Cart Items"></app-shopping-cart>
-            <app-shopping-edit></app-shopping-edit>
-          </ng-wizard-step>
-  
-          <ng-wizard-step [title]="'Step 2'" [description]="'Choose Payment Method'">
-            <app-credit-card-info></app-credit-card-info>
-          </ng-wizard-step>
-  
-          <ng-wizard-step [title]="'Step 3'" [description]="'Confirm Billing Address'"
-            [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-            <app-address title="Billing Address"></app-address>
-            <mat-checkbox (change)="onChecked($event)">Shipping Address same as Billing Address</mat-checkbox>
-            <app-address title="Shipping Address" *ngIf="!newComponent"></app-address>
-            <button type="submit" class="btn btn-info" (click)="onClose()">Submit</button>
-          </ng-wizard-step>
-  
-          <!-- <ng-wizard-step [title]="'Step 4'" [description]="'Step 4 description'">
-            <span>Step 4 content</span>
-          </ng-wizard-step>
-  
-          <ng-wizard-step [title]="'Step 5'" [description]="'Step 5 description'">
-            <span>Step 5 content</span>
-          </ng-wizard-step>
-  
-          <ng-wizard-step [title]="'Step 6'" [description]="'Step 6 description'">
-            <span>Step 6 content</span>
-          </ng-wizard-step>
-  
-          <ng-wizard-step [title]="'Step 7'" [description]="'Step 7 description'">
-            <span>Step 7 content</span>
-            
-          </ng-wizard-step>-->
-        </ng-wizard>
-        <button type="submit" class="btn btn-danger" (click)="onClose()">Cancel</button>
-      </div>
+  <div class="alert-box">
+    <div class="container py-5">
+      <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+        <ng-wizard-step [title]="'Step 1'" [description]="'Review Cart'" [canEnter]="isValidTypeBoolean"
+          [canExit]="items > 0">
+          <app-shopping-cart heading="Review Cart Items" (cartItems)="getCartItems($event)"></app-shopping-cart>
+          <app-shopping-edit (itemChange)="updateCart($event)"></app-shopping-edit>
+        </ng-wizard-step>
+
+        <ng-wizard-step [title]="'Step 2'" [description]="'Choose Payment Method'" [canEnter]="isValidTypeBoolean"
+          [canExit]="true">
+          <app-saved-credit-cards></app-saved-credit-cards>
+          <app-credit-card-info></app-credit-card-info>
+        </ng-wizard-step>
+
+        <ng-wizard-step [title]="'Step 3'" [description]="'Confirm Billing Address'"
+          [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+
+          <app-address title="Billing Address"></app-address>
+
+        </ng-wizard-step>
+
+        <ng-wizard-step [title]="'Step 4'" [description]="'Confirm Shipping Address'"
+        [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+          <mat-checkbox (change)="onChecked($event)">Shipping Address same as Billing Address</mat-checkbox>
+          <app-address title="Shipping Address" *ngIf="!newComponent"></app-address>
+          <button type="submit" class="btn btn-info" (click)="onClose()">Submit</button>
+
+        </ng-wizard-step>
+
+        <!--<ng-wizard-step [title]="'Step 5'" [description]="'Step 5 description'">
+        <span>Step 5 content</span>
+      </ng-wizard-step>
+
+      <ng-wizard-step [title]="'Step 6'" [description]="'Step 6 description'">
+        <span>Step 6 content</span>
+      </ng-wizard-step>
+
+      <ng-wizard-step [title]="'Step 7'" [description]="'Step 7 description'">
+        <span>Step 7 content</span>
+        
+      </ng-wizard-step>-->
+      </ng-wizard>
+      <button type="submit" class="btn btn-danger" (click)="onClose()">Cancel</button>
     </div>
   </div>
+</div>
